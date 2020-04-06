@@ -22,24 +22,3 @@ describe('isEven', function() {
     nu.isEven(15).should.be.false;
   });
 });
-
-
-describe('Test basic numeric operators', function() {
-  var num;
-  
-  beforeEach(function() {
-    num = 5;
-  });
-  
-  afterEach(function() {
-  });
-
-  it('subtract should return the difference of the numbers', function() {
-    ops.subtract(10, 5).should.equal(5);
-  });
-  
-  it('add should return the sum of the numbers', function() {
-    ops.add(num, 5).should.equal(10);
-    ops.add(3, 7).should.equal(10);
-  });
-});

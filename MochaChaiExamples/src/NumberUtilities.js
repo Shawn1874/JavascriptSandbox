@@ -1,3 +1,5 @@
-exports.isEven = function isEven(num) {
+/*exports.isEven = */ function isEven(num) {
     return num % 2 === 0;
   }
+
+  module.exports = { isEven };
