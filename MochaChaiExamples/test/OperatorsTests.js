@@ -40,7 +40,9 @@ describe('Test basic numeric operators', function() {
       ops.getRemainder(10, 5).should.equals(0);
       ops.getRemainder(25, 7).should.equals(4);
   })
+});
 
+describe('Test logical, comparison, and bitwise operators', function() {
   it('tests the logical operators', function testLogicalOperators() {
       expect( true || true).to.be.true;
       expect( true && true).to.be.true;
@@ -68,8 +70,37 @@ describe('Test basic numeric operators', function() {
     expect(~2).to.eq(-3);  // weird but  all numbers are signed 32 bits
     expect( 5 << 1).to.equal(10);
   })
+});
 
+describe('Test the string operators', function () {
   it('test string concatentation operator', function testStringCat() {
       expect("Hello" + " World").eq("Hello World");
   })
+});
+
+describe('Test the type operators', function () {
+  it('test the type of operator', function testTypeOf() {
+      expect(typeof(5)).equals("number");
+      expect(typeof('Shawn')).equals("string");
+      expect(typeof(true)).equals("boolean");
+      expect(typeof(nothing)).equals("undefined");  // variable nothing isn't defined
+      var unassignedVariable;
+      expect(typeof(unassignedVariable)).equals("undefined"); // variable isn't assigned a value
+      expect(typeof [1,2,3,4]).equals("object");  // arrays are objects
+      expect(typeof({name : "shawn", favoriteColor : "red"})).equals("object");
+      expect(typeof(null)).equals("object");
+  });
+
+  it('test the instanceof operator', function testInstanceOf() {
+    class Person {
+      constructor(first, last, age, eye) {
+        this.firstName = first;
+        this.lastName = last;
+        this.age = age;
+        this.eyeColor = eye;
+      }
+    }
+    let Steve = new Person("Steve", "Jones", 35, "green");
+    expect(Steve instanceof Person).to.be.true;
+  });
 });
