@@ -1,4 +1,3 @@
-/// <reference path="typings/mocha/mocha.d.ts"/>
 'use strict';
 
 // jshint expr: true
