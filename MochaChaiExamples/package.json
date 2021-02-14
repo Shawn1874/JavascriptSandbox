@@ -1,5 +1,9 @@
 {
     "scripts": {
-    "test": "mocha  'test/**/*.js'"
+        "test": "mocha  'test/**/*.js'"
+    },
+    "dependencies": {
+        "chai": "^4.2.0",
+        "mocha": "^8.0.1"
     }
 }
