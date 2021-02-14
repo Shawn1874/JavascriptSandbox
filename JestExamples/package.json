@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "test": "jest"
+  },
+    
+  "jest": {
+    "testRegex": "((\\.|/*.)(test))\\.js?$"
+  }
+}
