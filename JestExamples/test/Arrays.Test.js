@@ -3,18 +3,24 @@
 // jshint expr: true
 
 describe('Tests for basic array initialization and element access', function () {
-   let fibonacci = [2, 3, 5, 8, 13];
+   
    it('should return the value at specified index', function () {
-      expect(fibonacci[2]).toBe(5);
+      let fibonacci = [1, 2, 3, 5, 8, 13];
+      expect(fibonacci[2]).toBe(3);
 
    });
 
    it('should add elements using [], push, or shift', function () {
-      fibonacci[fibonacci.length] = 21;
-      expect(fibonacci).toBe(34);
-      expect(fibonacci).toBe(1);
-      expect(fibonacci.length).toBe(8);
+      let fibonacci = [2, 3, 5, 8, 13];
+      fibonacci.push(21);
+      expect(fibonacci[5]).toBe(21);
+
+      fibonacci.unshift(1);
       expect(fibonacci[0]).toBe(1);
+      expect(fibonacci[6]).toBe(21);
+
+      fibonacci[fibonacci.length] = 34;
+      expect(fibonacci[7]).toBe(34);
    });
 });
 

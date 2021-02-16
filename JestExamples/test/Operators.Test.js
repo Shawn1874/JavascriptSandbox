@@ -27,12 +27,12 @@ describe('Test basic numeric operators', function() {
   });
 
   it('Test the exponent operator', function testExponentialOperator() {
-    expect(ops.raiseToPower(2, 4)).toBes(16);
+    expect(ops.raiseToPower(2, 4)).toBe(16);
   });
 
   it('Test the remainder or modulo operator', function testModulo() {
-    expect(ops.getRemainder(10, 5)).toBes(0);
-    expect(ops.getRemainder(25, 7)).toBes(4);
+    expect(ops.getRemainder(10, 5)).toBe(0);
+    expect(ops.getRemainder(25, 7)).toBe(4);
   })
 });
 
@@ -58,31 +58,31 @@ describe('Test logical, comparison, and bitwise operators', function() {
   })
 
   it('tests the bitwise operators', function testBitwiseOperators() {
-    expect(0xf & 0x0).to.equal(0);
-    expect(0xf | 0x0).to.equal(0xf);
-    expect(0xf ^ 0xa).to.equal(0x5);
-    expect(~2).to.eq(-3);  // weird but  all numbers are signed 32 bits
-    expect( 5 << 1).to.equal(10);
+    expect(0xf & 0x0).toBe(0);
+    expect(0xf | 0x0).toBe(0xf);
+    expect(0xf ^ 0xa).toBe(0x5);
+    expect(~2).toBe(-3);  // weird but  all numbers are signed 32 bits
+    expect( 5 << 1).toBe(10);
   })
 });
 
 describe('Test the string operators', function () {
   it('test string concatentation operator', function testStringCat() {
-      expect("Hello" + " World").eq("Hello World");
+      expect("Hello" + " World").toBe("Hello World");
   })
 });
 
 describe('Test the type operators', function () {
   it('test the type of operator', function testTypeOf() {
-      expect(typeof(5)).equals("number");
-      expect(typeof('Shawn')).equals("string");
-      expect(typeof(true)).equals("boolean");
-      expect(typeof(nothing)).equals("undefined");  // variable nothing isn't defined
+      expect(typeof(5)).toBe("number");
+      expect(typeof('Shawn')).toBe("string");
+      expect(typeof(true)).toBe("boolean");
+      expect(typeof(nothing)).toBe("undefined");  // variable nothing isn't defined
       var unassignedVariable;
-      expect(typeof(unassignedVariable)).equals("undefined"); // variable isn't assigned a value
-      expect(typeof [1,2,3,4]).equals("object");  // arrays are objects
-      expect(typeof({name : "shawn", favoriteColor : "red"})).equals("object");
-      expect(typeof(null)).equals("object");
+      expect(typeof(unassignedVariable)).toBe("undefined"); // variable isn't assigned a value
+      expect(typeof [1,2,3,4]).toBe("object");  // arrays are objects
+      expect(typeof({name : "shawn", favoriteColor : "red"})).toBe("object");
+      expect(typeof(null)).toBe("object");
   });
 
   it('test the instanceof operator', function testInstanceOf() {
