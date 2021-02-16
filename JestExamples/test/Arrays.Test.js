@@ -22,6 +22,21 @@ describe('Tests for basic array initialization and element access', function () 
       fibonacci[fibonacci.length] = 34;
       expect(fibonacci[7]).toBe(34);
    });
+
+   it('should sum values of an array using a for loop', function () {
+      let values = [10, 20, 30, 40, 50];
+      let sum = 0;
+      for(let value of values) {
+         sum += value;
+      }
+      expect(sum).toBe(150);
+      
+      sum = 0;
+      for(let i = 0; i < values.length; i++) {
+         sum += values[i];
+      }
+      expect(sum).toBe(150);
+   });
 });
 
 describe('Tests for joining and searching arrays', function () {
