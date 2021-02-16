@@ -47,3 +47,49 @@ describe('Tests for joining and searching arrays', function () {
       expect(result.length).toBe(2);
    });
 });
+
+
+describe('Tests of splicing and slicing arrays', function () {
+   it('Should build a new array slicing some elements from original', function () {
+      let teams = ["49ers", "chargers", "dolphins", "rams", "chiefs"]
+      let sliced = teams.slice(0, 2);
+      expect(teams.length).toBe(5);
+      expect(sliced.length).toBe(2);
+      expect(sliced[0]).toBe("49ers");
+      expect(sliced[1]).toBe("chargers");
+   });
+
+   
+   it('Should build a new array with elements removed from the original', function () {
+      let words = ["we", "hold", "these", "truths", "that", "all", "men", "to be", "self-evident"];
+
+      //verify original length
+      expect(words.length).toBe(9);
+      let sliced = words.splice(4, 3);
+      
+      // Verify new length and content of the two arrays
+      expect(words.length).toBe(6);
+      expect(sliced.length).toBe(3);
+      expect(sliced[0]).toBe("that");
+      expect(sliced[2]).toBe("men");
+   });
+
+   it('Should build a new array with elements removed from the original', function () {
+      let declaration = ["we", "hold", "that", "all", "be", "self-evident"];
+
+      //verify original length
+      expect(declaration.length).toBe(6);
+      let spliced = declaration.splice(2, 2, "these", "truths", "to");
+      
+      // Verify new length and content of the two arrays
+      expect(declaration.length).toBe(7);
+      expect(declaration[0]).toBe("we");
+      expect(declaration[2]).toBe("these");
+      expect(declaration[3]).toBe("truths");
+      expect(declaration[4]).toBe("to");
+
+      expect(spliced.length).toBe(2);
+      expect(spliced[0]).toBe("that");
+      expect(spliced[1]).toBe("all");
+   });
+});
