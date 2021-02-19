@@ -3,7 +3,7 @@
 // jshint expr: true
 
 describe('Tests for basic array initialization and element access', function () {
-   
+
    it('should return the value at specified index', function () {
       let fibonacci = [1, 2, 3, 5, 8, 13];
       expect(fibonacci[2]).toBe(3);
@@ -26,13 +26,13 @@ describe('Tests for basic array initialization and element access', function () 
    it('should sum values of an array using a for loop', function () {
       let values = [10, 20, 30, 40, 50];
       let sum = 0;
-      for(let value of values) {
+      for (let value of values) {
          sum += value;
       }
       expect(sum).toBe(150);
-      
+
       sum = 0;
-      for(let i = 0; i < values.length; i++) {
+      for (let i = 0; i < values.length; i++) {
          sum += values[i];
       }
       expect(sum).toBe(150);
@@ -74,14 +74,14 @@ describe('Tests of splicing and slicing arrays', function () {
       expect(sliced[1]).toBe("chargers");
    });
 
-   
+
    it('Should build a new array with elements removed from the original', function () {
       let words = ["we", "hold", "these", "truths", "that", "all", "men", "to be", "self-evident"];
 
       //verify original length
       expect(words.length).toBe(9);
       let sliced = words.splice(4, 3);
-      
+
       // Verify new length and content of the two arrays
       expect(words.length).toBe(6);
       expect(sliced.length).toBe(3);
@@ -95,7 +95,7 @@ describe('Tests of splicing and slicing arrays', function () {
       //verify original length
       expect(declaration.length).toBe(6);
       let spliced = declaration.splice(2, 2, "these", "truths", "to");
-      
+
       // Verify new length and content of the two arrays
       expect(declaration.length).toBe(7);
       expect(declaration[0]).toBe("we");
@@ -106,5 +106,45 @@ describe('Tests of splicing and slicing arrays', function () {
       expect(spliced.length).toBe(2);
       expect(spliced[0]).toBe("that");
       expect(spliced[1]).toBe("all");
+   });
+});
+
+describe('Tests for array methods that use predicates', function () {
+   let words = ["we", "hold", "these", "truths", "to be", "self-evident"];
+   let teams = ["49ers", "chargers", "dolphins", "rams", "chiefs"]
+
+   function isOldEnoughToDrink(age) {
+      return age >= 21;
+   }
+
+   it('Test array.every', function () {
+      let ages = [21, 22, 52, 33, 41];
+      expect(ages.every(isOldEnoughToDrink)).toBe.truthy;
+
+      ages[ages.length] = 19;
+      expect(ages.every(isOldEnoughToDrink)).toBe.truthy;
+   });
+
+   it('Test array.map', function () {
+
+      function doubleIt(x) {
+         return x * 2;
+      }
+
+      let values = [2, 4, 6, 8, 10];
+      let doubled = values.map(doubleIt);
+      expect(doubled[0]).toBe(values[0] * 2);
+      expect(doubled[2]).toBe(values[2] * 2);
+      expect(doubled[4]).toBe(values[4] * 2);
+      expect(doubled.length).toBe(values.length);
+   });
+   
+
+   it('test array.sort', function () {
+      var points = [40, 100, 1, 5, 25, 10];
+      points.sort(function (a, b) { return a - b });
+      expect(points[0]).toBe(1);
+      points.sort(function (a, b) { return b - a });
+      expect(points[0]).toBe(100);
    });
 });
