@@ -148,3 +148,30 @@ describe('Tests for array methods that use predicates', function () {
       expect(points[0]).toBe(100);
    });
 });
+
+describe('Tests of associative arrays', function () {
+
+   it('Test how to get length of associative array', function () {
+      var item = [];
+      item["itemCode"] = 123; 
+      item["itemName"] = "HTML5"; 
+      item["itemCost"] = 54.5; 
+      item["itemQuantity"] = 5; 
+      expect(item.length).toBe(0);
+      expect(Object.keys(item).length).toBe(4);
+   });
+
+   it('Test loop over associative array', function () {
+      let phrase = [];
+      phrase["first"] = "hello";
+      phrase["second"] = "world";
+      let greeting = "";
+
+      // When looping over an associative array it is looping over the properties of 
+      // an object so the variable is treated as a key
+      for(let key in phrase) {
+         greeting += phrase[key];
+      }
+      expect(greeting).toBe("helloworld");
+   });
+});
