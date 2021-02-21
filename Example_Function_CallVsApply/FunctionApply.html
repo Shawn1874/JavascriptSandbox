@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Functions</h2>
+<p>In this example the fulllName method of person is <b>applied</b> to two other person objects</p>
+
+<p id="person1"></p>
+<p id="person2"></p>
+<p id="person3"></p>
+<p id="person4"></p>
+
+<script>
+var person = {
+  fullName: function() {
+    return this.firstName + " " + this.lastName;
+  },
+
+  nameAndHomeTown: function(city, country) {
+    return this.firstName + " " + this.lastName + ", " + city + ", " + country;
+  }
+}
+var john = {
+  firstName:"John",
+  lastName: "Doe"
+}
+
+var jane = {
+  firstName:"Jane",
+  lastName: "Doe"
+}
+
+// An object can use a method defined within another object if it has properties that are 
+// used by that method.  Here the person 1 and 2 objects each have the name components defined 
+// which are needed by the person: fullName function.
+document.getElementById("person1").innerHTML = person.fullName.call(jane); 
+document.getElementById("person2").innerHTML = person.fullName.apply(john);
+document.getElementById("person3").innerHTML = person.nameAndHomeTown.call(jane, "Pittsburgh", "U.S.A"); 
+document.getElementById("person4").innerHTML = person.nameAndHomeTown.apply(john, ["Oslo", "Norway"]);
+</script>
+
+</body>
+</html>
+
+

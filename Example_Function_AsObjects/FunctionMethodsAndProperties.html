@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>The toString() method returns the function as a string:</p>
+<p id="demo"></p>
+
+<p>arguments.length returns the number of parameters received</p>
+<p id="demo2"></p>
+
+<script>
+function myFunction(a, b) {
+  return a * b;
+}
+
+function testLengthProperty(a, b, c, d) {
+  return arguments.length;
+}
+
+document.getElementById("demo").innerHTML = myFunction.toString();
+document.getElementById("demo2").innerHTML = testLengthProperty.toString() + "testLengthProperty(1, 2) returns " + testLengthProperty(1, 2);
+</script>
+
+</body>
+</html>
