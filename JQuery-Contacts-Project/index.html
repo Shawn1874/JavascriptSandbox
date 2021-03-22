@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>jQuery UI Accordion - Default functionality</title>
+    <link rel="stylesheet" href="styles\jquery-ui.css">
+    <script src="scripts/jquery.js"></script>
+    <script src="scripts/jquery-ui.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#accordion").accordion(
+                {
+                    //event: "mouseover",
+                    heightStyle: "content",
+                    collapsible: true
+                });
+        });
+    </script>
+</head>
+
+<body>
+
+    <div id="accordion">
+        <h3><span>Name: </span><span>Joe Buck</span></h3>
+        <div>
+            <p><span>joe.buck@netscape.com</span></p>
+            <p><span>Phone: </span><span>719-223-3245</span></p>
+        </div>
+        
+        <h3><span>Name: </span><span>Sarah Conners</span></h3>
+        <div>
+            <p><span>sarah.conners@netscape.com</span></p>
+            <p><span>Phone: </span><span>unlisted</span></p>
+        </div>
+    </div>
+
+</body>
+
+</html>
