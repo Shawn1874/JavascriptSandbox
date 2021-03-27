@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>jQuery UI Accordion - Default functionality</title>
     <link rel="stylesheet" href="styles\jquery-ui.css">
+    <link rel="stylesheet" href="styles\contact-manager.css">
     <script src="scripts/jquery.js"></script>
     <script src="scripts/jquery-ui.js"></script>
     <script src="scripts/contact-manager.js"></script>
@@ -18,19 +19,19 @@
 
         <div class="heading">
             First Name:
-            <input type="text" id="first name" placeholder="Enter First Name">
+            <input type="text" id="first name" required placeholder="Enter First Name">
             <span id="firstname_error"></span><br>
         </div>
 
         <div class="heading">
             Last Name:
-            <input type="text" id="last name" placeholder="Enter Last Name">
+            <input type="text" id="last name" required placeholder="Enter Last Name">
             <span id="lastname_error"></span><br><br>
         </div>
 
         <div class="heading">
             Phone Number:
-            <input type="tel" id="phone" required placeholder="858-867-5309">
+            <input type="tel" id="phone" placeholder="858-867-5309">
             <span id="lastname_error"></span><br><br>
         </div>
 
@@ -47,21 +48,11 @@
             <span id="comments_error"></span>
         </div>
 
-        <input type="submit" name="submit" value="Enter"><br><br><span></span>
+        <input type="submit" name="submit" value="Enter"><span></span>
+        <input type="reset">
     </form>
 
     <div id="accordion" class="contacts">
-        <h3>Joe Buck</h3>
-        <div>
-            <p>joe.buck@netscape.com</p>
-            <p>Phone: 719-223-3245</p>
-        </div>
-
-        <h3>Sarah Conners</h3>
-        <div>
-            <p>sarah.conners@netscape.com</p>
-            <p>Phone: unlisted</p>
-        </div>
     </div>
 
 </body>

@@ -10,7 +10,7 @@ $(document).ready(function () {
     // TODO: Need to figure out how to hide an element and then toggle it without the initial flicker
     $("#new-contact-form").slideToggle(1);
     $("#new-contact").click(function () {
-        $("#new-contact-form").slideToggle(500);
+        $("#new-contact-form").slideDown(500);
     });
 
     contacts = loadContacts();
@@ -116,8 +116,8 @@ function createContact(lastName, firstName, phoneNumber, email, notes) {
 function generateContacts() {
     let contacts = [];
 
-    contacts[0] = new Contact("Venkman", "Peter", "212-745-3217", "venkman@ghostbusters.org", "");
-    contacts[1] = new Contact("Zeddemore", "Winston", "212-917-4890", "zeedemore@ghostbusters.org", "");
+    contacts[0] = new Contact("Venkman", "Peter", "212-745-3217", "venkman@ghostbusters.org", "In love with Dana Barret");
+    contacts[1] = new Contact("Zeddemore", "Winston", "212-917-4890", "zeedemore@ghostbusters.org", "will believe anything you say if there is steady pay involved");
     contacts[2] = new Contact("Barrett", "Dana", "212-913-2117", "dana.barrett@hotmail.com", "cellist, New York Philharmonic");
 
     return contacts;
