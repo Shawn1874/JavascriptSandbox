@@ -6,11 +6,10 @@ $(document).ready(function () {
             collapsible: true
         });
 
+    $("#submit-contact").click(submitContact);
 
-    // TODO: Need to figure out how to hide an element and then toggle it without the initial flicker
-    $("#new-contact-form").slideToggle(1);
-    $("#new-contact").click(function () {
-        $("#new-contact-form").slideDown(500);
+    $("#new-contact").click(function() { 
+        $("#new-contact-form").slideToggle(500);
     });
 
     contacts = loadContacts();
@@ -50,6 +49,16 @@ class Contact {
     static from(json) {
         return Object.assign(new Contact(), json);
     }
+}
+
+function submitContact() {
+    let contact = new Contact( $("#last-name").val(), 
+        $("#first-name").val(),
+        $("#phone").val(),
+        $("#email").val(),
+        $("#notes").val());
+
+        addContactToDOM(contact);
 }
 
 function addContactToDOM(contact) {

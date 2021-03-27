@@ -13,43 +13,42 @@
 </head>
 
 <body>
-    <input id="new-contact" type="button" value="Create Contact">
+    <input id="new-contact" class="ui-button ui-widget ui-corner-all" type="button" value="Create Contact">
 
-    <form id="new-contact-form" action="hw5.html" method="get" onsubmit="return validateMe();"><br>
+    <form id="new-contact-form"><br>
 
         <div class="heading">
             First Name:
-            <input type="text" id="first name" required placeholder="Enter First Name">
+            <input type="text" id="first-name" required placeholder="Enter First Name" tabindex="1">
             <span id="firstname_error"></span><br>
         </div>
 
         <div class="heading">
             Last Name:
-            <input type="text" id="last name" required placeholder="Enter Last Name">
+            <input type="text" id="last-name" required placeholder="Enter Last Name"  tabindex="2">
             <span id="lastname_error"></span><br><br>
         </div>
 
         <div class="heading">
             Phone Number:
-            <input type="tel" id="phone" placeholder="858-867-5309">
+            <input type="tel" id="phone" placeholder="858-867-5309"  tabindex="3">
             <span id="lastname_error"></span><br><br>
         </div>
 
         <div class="heading">
             Email Address:
-            <input type="email" id="email" placeholder="john.doe@acme.com">
+            <input type="email" id="email" placeholder="john.doe@acme.com"  tabindex="4">
             <span id="email_error"></span><br><br>
         </div>
 
         <div class="heading">
             Notes<br>
-            <textarea rows="6" cols="50" name="comments" id="comments" tabindex="4"
-                value=''></textarea>
+            <textarea rows="6" cols="50" name="notes" id="notes" tabindex="5" value=''></textarea>
             <span id="comments_error"></span>
         </div>
 
-        <input type="submit" name="submit" value="Enter"><span></span>
-        <input type="reset">
+        <input id="submit-contact"  class="ui-button ui-widget ui-corner-all" type="button" value="Submit" tabindex="6" ><span></span>
+        <input  class="ui-button ui-widget ui-corner-all" type="reset" tabindex="7" > 
     </form>
 
     <div id="accordion" class="contacts">
