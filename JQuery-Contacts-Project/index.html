@@ -8,31 +8,59 @@
     <link rel="stylesheet" href="styles\jquery-ui.css">
     <script src="scripts/jquery.js"></script>
     <script src="scripts/jquery-ui.js"></script>
-    <script>
-        $(document).ready(function () {
-            $("#accordion").accordion(
-                {
-                    //event: "mouseover",
-                    heightStyle: "content",
-                    collapsible: true
-                });
-        });
-    </script>
+    <script src="scripts/contact-manager.js"></script>
 </head>
 
 <body>
+    <input id="new-contact" type="button" value="Create Contact">
 
-    <div id="accordion">
-        <h3><span>Name: </span><span>Joe Buck</span></h3>
-        <div>
-            <p><span>joe.buck@netscape.com</span></p>
-            <p><span>Phone: </span><span>719-223-3245</span></p>
+    <form id="new-contact-form" action="hw5.html" method="get" onsubmit="return validateMe();"><br>
+
+        <div class="heading">
+            First Name:
+            <input type="text" id="first name" placeholder="Enter First Name">
+            <span id="firstname_error"></span><br>
         </div>
-        
-        <h3><span>Name: </span><span>Sarah Conners</span></h3>
+
+        <div class="heading">
+            Last Name:
+            <input type="text" id="last name" placeholder="Enter Last Name">
+            <span id="lastname_error"></span><br><br>
+        </div>
+
+        <div class="heading">
+            Phone Number:
+            <input type="tel" id="phone" required placeholder="858-867-5309">
+            <span id="lastname_error"></span><br><br>
+        </div>
+
+        <div class="heading">
+            Email Address:
+            <input type="email" id="email" placeholder="john.doe@acme.com">
+            <span id="email_error"></span><br><br>
+        </div>
+
+        <div class="heading">
+            Notes<br>
+            <textarea rows="6" cols="50" name="comments" id="comments" tabindex="4"
+                value=''></textarea>
+            <span id="comments_error"></span>
+        </div>
+
+        <input type="submit" name="submit" value="Enter"><br><br><span></span>
+    </form>
+
+    <div id="accordion" class="contacts">
+        <h3>Joe Buck</h3>
         <div>
-            <p><span>sarah.conners@netscape.com</span></p>
-            <p><span>Phone: </span><span>unlisted</span></p>
+            <p>joe.buck@netscape.com</p>
+            <p>Phone: 719-223-3245</p>
+        </div>
+
+        <h3>Sarah Conners</h3>
+        <div>
+            <p>sarah.conners@netscape.com</p>
+            <p>Phone: unlisted</p>
         </div>
     </div>
 
