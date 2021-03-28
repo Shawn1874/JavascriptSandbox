@@ -1,26 +1,32 @@
+/**
+ * This code executes after the document is fully loaded. It initializes the accordion control,
+ * registers click handlers that need to be registered, and loads contacts from storage if there
+ * are any to load.  If none to load, then the program will simply generate some contacts for
+ * demo purposes.
+ */
 $(document).ready(function () {
     $("#accordion").accordion(
         {
-            //event: "mouseover",
             heightStyle: "content",
             collapsible: true
         });
 
     $("#submit-contact").click(submitContact);
 
-    $("#new-contact").click(function() { 
+    $("#new-contact").click(function () {
         $("#new-contact-form").slideToggle(500);
     });
 
     contacts = loadContacts();
-    for(c of contacts) {
+    for (c of contacts) {
         addContact(c);
     }
-
 });
 
 /**
- * Declaration of a class for a contact.
+ * Declaration of a class for a contact. The static ID methods are needed to uniquely 
+ * identify contacts, and this identifer is generated automatically.  The ID does not 
+ * need to be specified by the code the builds a contact.
  */
 class Contact {
 
@@ -50,13 +56,6 @@ class Contact {
     }
 
     static nextId = 1;
-/* 
-    lastName = "";
-    firstName = "";
-    phoneNumber = "";
-    email = "";
-    notes = "";
-    id = Contact.getNextID(); */
 
     constructor(lastName, firstName, phoneNumber, email, notes) {
         this.lastName = lastName;
@@ -86,19 +85,21 @@ class Contact {
     }
 }
 
+/**
+ * Event handler for the submit contact button.
+ */
 function submitContact() {
-    let contact = new Contact( $("#last-name").val(), 
+    let contact = new Contact($("#last-name").val(),
         $("#first-name").val(),
         $("#phone").val(),
         $("#email").val(),
         $("#notes").val());
 
-        addContact(contact);
-        $('#new-contact-form').trigger("reset");
+    addContact(contact);
 }
 
 /**
- * 
+ * Adds the contact to the DOM and to the localStorage, then refreshes the accordion control.
  * @param {*} contact 
  */
 function addContact(contact) {
@@ -112,11 +113,11 @@ function addContact(contact) {
     // Under the h3 element, add a paragraph element for each item
     let contactInfo = contact.info;
     let p = "";
-    for(let i in contactInfo) {
+    for (let i in contactInfo) {
         p += `<p>${i}: ${contactInfo[i]}</p>`;
     }
-    
-    let div = `<div id="${contact.id}">${p}</div>`;
+    let buttons = getButtonText(contact.id);
+    let div = `<div id="${contact.id}">${p}${buttons}</div>`;
     contactList.append(div);
     contactList.accordion("refresh");
     localStorage.setItem(contact.id, JSON.stringify(contact));
@@ -170,6 +171,53 @@ function generateContacts() {
     contacts[2] = new Contact("Barrett", "Dana", "212-913-2117", "dana.barrett@hotmail.com", "cellist, New York Philharmonic");
 
     return contacts;
+}
+
+/**
+ * Constructs a string with the HTML for an edit and remove button.
+ * @returns HTML which can be adde dto the DOM
+ */
+function getButtonText(id) {
+    let edit = `<input id="${id}" class="edit-contact ui-button ui-widget ui-corner-all" type="button" value="Edit" onClick="editHandler(this)"><span>  </span>`;
+    let remove = `<input  id="${id}" class="delete-contact ui-button ui-widget ui-corner-all" type="button" value="Delete" onClick="deleteHandler(this)">`;
+    return edit + remove;
+}
+
+/**
+ * Delete handler for a contact which removes the contact that the button is associated with.
+ * The contact is removed from the DOM and the local storage.
+ * 
+ * @param {*} button 
+ */
+function deleteHandler(button) {
+    console.log("deleteHandler");
+    console.log(button.id);
+
+    let contactH3 = $(`h3#${button.id}`);
+    if (contactH3.length == 1) {
+        contactH3.remove();
+    }
+
+    // Get the previous div element id
+    let contactDiv = $(`div #${button.id}`);
+    localStorage.removeItem(button.id);
+    contactDiv.remove();
+
+    // Refresh the accordian.
+    let contactList = $("#accordion");
+    contactList.accordion("refresh");
+}
+
+/**
+ * TBD - Didn't get to this yet.  The idea is that it should slide out the form and load the 
+ * existing contact into the form.  Somehow when the contact form is submitted, it would have 
+ * to know to update the existing contact.  Some design work is needed to change the 
+ * submit handler to handle both editing and creating contacts.
+ * @param {*} button 
+ */
+function editHandler(button) {
+    console.log("editHandler");
+    console.log(button.id);
 }
 
 
