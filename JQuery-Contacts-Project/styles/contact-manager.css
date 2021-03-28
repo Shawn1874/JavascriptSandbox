@@ -1,3 +1,7 @@
 #new-contact-form {
     display: none;
 }
+
+.error {
+    color: red;
+}

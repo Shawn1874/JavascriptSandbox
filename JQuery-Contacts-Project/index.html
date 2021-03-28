@@ -15,39 +15,38 @@
 <body>
     <input id="new-contact" class="ui-button ui-widget ui-corner-all" type="button" value="Create Contact">
 
-    <form id="new-contact-form"><br>
+    <form action="nothing.html" method="GET" name="new-contact-form" id="new-contact-form" ><br>
 
         <div class="heading">
             First Name:
-            <input type="text" id="first-name" required placeholder="Enter First Name" tabindex="1">
-            <span id="firstname_error"></span><br>
+            <input type="text" id="first-name" placeholder="Enter First Name" tabindex="1" required></input>
+            <span id="firstname_error" class="error"></span><br><br>
         </div>
 
         <div class="heading">
             Last Name:
-            <input type="text" id="last-name" required placeholder="Enter Last Name"  tabindex="2">
-            <span id="lastname_error"></span><br><br>
+            <input type="text" id="last-name" placeholder="Enter Last Name"  tabindex="2" required></input>
+            <span id="lastname_error" class="error"></span><br><br>
         </div>
 
         <div class="heading">
             Phone Number:
-            <input type="tel" id="phone" placeholder="858-867-5309"  tabindex="3">
-            <span id="lastname_error"></span><br><br>
+            <input type="tel" id="phone" title="nnn-nnn-nnnn or (nnn)nnn-nnnn" placeholder="858-867-5309" tabindex="3" />
+            <span id="tel_error" class="error"></span><br><br>
         </div>
 
         <div class="heading">
             Email Address:
-            <input type="email" id="email" placeholder="john.doe@acme.com"  tabindex="4">
-            <span id="email_error"></span><br><br>
+            <input type="email" id="email" placeholder="john.doe@acme.com"  tabindex="4" />
+            <span id="email_error" class="error"></span><br><br>
         </div>
 
         <div class="heading">
             Notes<br>
-            <textarea rows="6" cols="50" name="notes" id="notes" tabindex="5" value=''></textarea>
-            <span id="comments_error"></span>
+            <textarea rows="6" cols="50" name="notes" id="notes" title="optional notes about the contact such as occupation, hobbies, etc." tabindex="5" value=''></textarea>
         </div>
 
-        <input id="submit-contact"  class="ui-button ui-widget ui-corner-all" type="button" value="Submit" tabindex="6" ><span></span>
+        <input id="submit-contact" class="ui-button ui-widget ui-corner-all" type="submit" value="Submit" tabindex="6" ><span></span>
         <input  class="ui-button ui-widget ui-corner-all" type="reset" tabindex="7" > 
     </form>
 

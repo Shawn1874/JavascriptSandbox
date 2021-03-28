@@ -88,14 +88,63 @@ class Contact {
 /**
  * Event handler for the submit contact button.
  */
-function submitContact() {
-    let contact = new Contact($("#last-name").val(),
+function submitContact(evt) {
+    let isValid = false;
+    
+    // Select all text and text area elements
+    let textControls = $("input[type='text']");
+    let allValid = true;
+
+    textControls.each(function (index, control) {
+        console.log("text control: " + index);
+        let spanText = '';
+        if( $(control).val() === '' ) {
+            spanText = $(control).attr("id") + " is required!";
+            allValid &= false;
+        }
+        $(control).siblings("span").text(spanText);
+    });
+
+    let email = $("#email");
+    let phone = $("#phone");
+    console.log(email.val());
+    console.log(phone.val());
+    if(email.val() === "" && phone.val() === "") {
+        email.siblings("span").text("Either an email address or phone number is required!");
+        allValid = false;
+    }
+    else {
+        email.siblings("span").text("");
+    }
+
+    if(phone.val() != "") {
+        let myRegEx = new RegExp("^([(][0-9]{3}[)]|[0-9]{3}-)[0-9]{3}-[0-9]{4}$");
+        let myArray = myRegEx.exec(phone.val());
+        if(myArray == null) {
+            phone.siblings("span").text("The phone number is not valid!");
+            allValid = false;
+        } 
+        else {
+            phone.siblings("span").text("");
+        }
+    }
+
+
+    if(allValid) {
+        let contact = new Contact($("#last-name").val(),
         $("#first-name").val(),
         $("#phone").val(),
         $("#email").val(),
         $("#notes").val());
 
-    addContact(contact);
+        addContact(contact);
+
+        let form = $("#new-contact-form");
+        form.trigger("reset");
+        form.slideToggle(500);
+    }
+        
+    evt.preventDefault();
 }
 
 /**
@@ -174,13 +223,13 @@ function generateContacts() {
 }
 
 /**
- * Constructs a string with the HTML for an edit and remove button.
+ * Constructs a string with the HTML for a remove button.  
  * @returns HTML which can be adde dto the DOM
  */
 function getButtonText(id) {
-    let edit = `<input id="${id}" class="edit-contact ui-button ui-widget ui-corner-all" type="button" value="Edit" onClick="editHandler(this)"><span>  </span>`;
+    //let edit = `<input id="${id}" class="edit-contact ui-button ui-widget ui-corner-all" type="button" value="Edit" onClick="editHandler(this)"><span>  </span>`;
     let remove = `<input  id="${id}" class="delete-contact ui-button ui-widget ui-corner-all" type="button" value="Delete" onClick="deleteHandler(this)">`;
-    return edit + remove;
+    return remove;  // concatenate remove and edit button text when edit functionality is working.
 }
 
 /**
