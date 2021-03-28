@@ -14,18 +14,57 @@ $(document).ready(function () {
 
     contacts = loadContacts();
     for(c of contacts) {
-        addContactToDOM(c);
+        addContact(c);
     }
 
 });
 
+/**
+ * Declaration of a class for a contact.
+ */
 class Contact {
+
+    /**
+     * Constrcut a contact from a JSON string.
+     * @param {*} json 
+     * @returns 
+     */
+    static from(json) {
+        return Object.assign(new Contact(), json);
+    }
+
+    /**
+     * Sets the value of the next numeric ID that getNextID() will return.
+     * @param {*} next 
+     */
+    static setNextID(next) {
+        Contact.nextId = next;
+    }
+
+    /**
+     * Get the next available numeric ID for identifying the next contact.
+     * @returns number
+     */
+    static getNextID() {
+        return Contact.nextId++;
+    }
+
+    static nextId = 1;
+/* 
+    lastName = "";
+    firstName = "";
+    phoneNumber = "";
+    email = "";
+    notes = "";
+    id = Contact.getNextID(); */
+
     constructor(lastName, firstName, phoneNumber, email, notes) {
         this.lastName = lastName;
         this.firstName = firstName;
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.notes = notes;
+        this.id = Contact.getNextID();
     }
 
     /**
@@ -45,10 +84,6 @@ class Contact {
         contactInfo["Notes"] = this.notes;
         return contactInfo;
     }
-
-    static from(json) {
-        return Object.assign(new Contact(), json);
-    }
 }
 
 function submitContact() {
@@ -58,16 +93,21 @@ function submitContact() {
         $("#email").val(),
         $("#notes").val());
 
-        addContactToDOM(contact);
+        addContact(contact);
+        $('#new-contact-form').trigger("reset");
 }
 
-function addContactToDOM(contact) {
+/**
+ * 
+ * @param {*} contact 
+ */
+function addContact(contact) {
     // get the div with id="accordion"
     let contactList = $("#accordion");
 
     //$(".contacts").append("<p>test</p>");
     // Build an h3 element with the name of the contact
-    contactList.append(`<h3>${contact.name}</h3>`);
+    contactList.append(`<h3 id="${contact.id}">${contact.name}</h3>`);
 
     // Under the h3 element, add a paragraph element for each item
     let contactInfo = contact.info;
@@ -76,10 +116,10 @@ function addContactToDOM(contact) {
         p += `<p>${i}: ${contactInfo[i]}</p>`;
     }
     
-    let div = `<div>${p}</div>`;
+    let div = `<div id="${contact.id}">${p}</div>`;
     contactList.append(div);
-
     contactList.accordion("refresh");
+    localStorage.setItem(contact.id, JSON.stringify(contact));
 }
 
 /**
