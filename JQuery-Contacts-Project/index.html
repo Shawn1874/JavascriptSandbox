@@ -1,4 +1,35 @@
 <!doctype html>
+<!-- 
+    Name: Shawn D. Fox
+    Project Description: This project is a contact manager for managing personal and professional contacts.
+    It currently supports the following capabilities.
+    1) At startup, 3 contacts will be added for demo purposes if no contacts have been entered into storage yet.
+    2) New contacts can be created and the form is validated to ensure that first and last name are entered and 
+    either a phone number of email address is entered.
+    3) Errors are styled and written into the span elements where applicable if an error is detected, and
+       contacts aren't stored until validated.
+    4) Contacts can be deleted, and will be removed from both local web storage and the DOM
+    5) JQuery button and accordion controls are used in this project.
+    6) The form is not shown until the Create Contact button is pressed which slides down the form.
+    7) when a contact is entered successfully, it is added to the DOM, saved into web storage, and
+       the contact form is hidden.
+    8) Some limited validation of local storage is implemented at startup.  Since the unique id used as a 
+       key is a number, only items with a numeric key are parsed.  Exception handling is used to skip
+       any item in storage that cannot be parsed into a Contact object.
+    9) A regex was used to validate the phone number.
+
+    Limitations:
+    1) An edit capability was not implemented due to time constraints, but the ultimate goal as I keep
+       learning and refining is to load an existing contact into the form, slide down the form, and 
+       and then update an existing contact if the information is valid.
+    2) Obviously a database would have been a better choice for contacts, but for the limited time to 
+       execute the project for the class an SQL database was not possible.  I was given an option to
+       experiment with web storage or JQUERY plugins.
+    3) Email and phone validation is limited.  The HTML5 auto validation didn't work at all for some 
+       reason.  Using a regex for the phone number added some complexity and demonstrated the ability
+       to research the concept.  A similar regex for email addresses could be used in the future or
+       the HTML5 validation needs to be researched further.  
+-->
 <html lang="en">
 
 <head>

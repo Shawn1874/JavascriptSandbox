@@ -83,6 +83,16 @@ class Contact {
         contactInfo["Notes"] = this.notes;
         return contactInfo;
     }
+
+    isValid() {
+        let isValid = this.lastName != undefined &&
+            this.firstName != undefined && 
+            this.phoneNumber != undefined && 
+            this.email != undefined && 
+            this.notes != undefined;
+
+        return isValid;
+    }
 }
 
 /**
@@ -183,7 +193,25 @@ function loadContacts() {
     } else {
         let keys = Object.keys(localStorage);
         for (let key of keys) {
-            contacts[contacts.length] = Contact.from(JSON.parse(localStorage.getItem(key)));
+
+            // Keys of contacts are expected to be numbers so skip anything in web storage with a non-numeric key
+            if(isNaN(key)) {
+                continue;
+            }
+
+            // It is still possible that a numeric key could be something other than a contact.  in a real world project
+            // contacts would be stored in something like an SQL database.  There are some limitations of web storage that
+            // I must work around in this sample project.
+            try {
+                let contactJSON = JSON.parse(localStorage.getItem(key));
+                let contact = Contact.from(contactJSON);
+                if(contact.isValid()) {
+                    contacts[contacts.length] = contact;
+                }
+            }
+            catch(exception) {
+                console.log("skipping storage item that couldn't be parsed");
+            }
         }
     }
 
