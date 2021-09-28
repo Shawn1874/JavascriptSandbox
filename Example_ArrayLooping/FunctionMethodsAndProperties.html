@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <style>
+    #arrayValues {
+      font-family: Arial, Helvetica, sans-serif;
+      border-collapse: collapse;
+      width: 50%;
+    }
+    
+    #custarrayValuesomers td, #arrayValues th {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+    
+    #arrayValues tr:nth-child(even){background-color: #f2f2f2;}
+    
+    #arrayValues tr:hover {background-color: #ddd;}
+    
+    #arrayValues th {
+      padding-top: 12px;
+      padding-bottom: 12px;
+      text-align: left;
+      background-color: #4CAF50;
+      color: white;
+    }
+    </style>
+    </head>
+<body>
+
+  <h1>Content of Array</h1>
+  <table id="arrayValues">
+    <tr>
+      <th>Row #</th>
+      <th>Values</th>
+    </tr>
+  </table>
+
+  <script>
+    var $ = function (id) {
+      return document.getElementById(id);
+    }
+
+    function printArray() {
+
+      let a = [[1, 2, 1, 24], [8, 11, 9, 4], [7, 0, 7, 27], [7, 4, 28, 14], [3, 10, 26, 7]];
+      let text = "";
+      let table = document.getElementById("arrayValues");
+
+      for (let i = 0; i < a.length; i++) {
+        let row = table.insertRow(table.length);
+        cell = row.insertCell(0);
+        cell.innerHTML = i + 1;
+        console.log(cell.innerHTML);
+        cell = row.insertCell(1);
+        cell.innerHTML = a[i];
+        console.log(cell.innerHTML);
+
+
+        // It is critical to use of instead of in if looping over individual values.
+        // of loops over an iterable, whereas in loops over the object.
+        /* for(let value of inner) {
+          text += value + ", ";
+        } */
+      }
+
+      return text;
+    }
+
+    window.onload = function () {
+      printArray();
+    }
+  </script>
+
+</body>
+
+</html>
