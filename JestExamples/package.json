@@ -2,8 +2,10 @@
   "scripts": {
     "test": "jest"
   },
-    
   "jest": {
     "testRegex": "((\\.|/*.)(test))\\.js?$"
+  },
+  "dependencies": {
+    "jest": "^28.1.1"
   }
 }
